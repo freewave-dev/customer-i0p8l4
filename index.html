@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little Island Internet — Fast, Reliable Island Connectivity</title>
+<meta name="description" content="Little Island Internet provides fast, reliable broadband to our island community. No contracts, local support, honest pricing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --deep: #1A0E2E;
+  --navy: #2A1845;
+  --ocean: #8B5CF6;
+  --teal: #F59E0B;
+  --aqua: #FBBF24;
+  --sand: #FDF2F8;
+  --warm: #F9A8D4;
+  --coral: #FB7185;
+  --white: #FEFCF9;
+  --mist: #F3E8FF;
+  --slate: #9F8BBF;
+  --font-display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--deep);
+  background: var(--white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══ NAV ═══ */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background .4s, box-shadow .4s, padding .4s;
+}
+
+nav.scrolled {
+  background: rgba(26, 14, 46, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 2px 24px rgba(0,0,0,.2);
+  padding: .85rem 2rem;
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.nav-logo span { color: var(--teal); }
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-links a {
+  color: rgba(255,255,255,.8);
+  text-decoration: none;
+  font-size: .9rem;
+  font-weight: 500;
+  letter-spacing: .02em;
+  transition: color .25s;
+}
+
+.nav-links a:hover { color: var(--teal); }
+
+.nav-cta {
+  background: var(--teal) !important;
+  color: var(--deep) !important;
+  padding: .55rem 1.3rem;
+  border-radius: 8px;
+  font-weight: 600 !important;
+  transition: background .25s, transform .2s !important;
+}
+
+.nav-cta:hover {
+  background: var(--aqua) !important;
+  transform: translateY(-1px);
+}
+
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.mobile-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  margin: 5px 0;
+  border-radius: 2px;
+  transition: .3s;
+}
+
+/* ═══ HERO ═══ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 2rem 4rem;
+  background: var(--deep);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 80%, rgba(245, 158, 11, .15) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(139, 92, 246, .25) 0%, transparent 55%),
+    radial-gradient(ellipse 100% 80% at 50% 100%, rgba(251, 113, 133, .1) 0%, transparent 50%);
+}
+
+/* animated wave layers */
+.hero-waves {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 120px;
+  overflow: hidden;
+}
+
+.hero-waves svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+}
+
+.wave-1 { animation: drift 8s ease-in-out infinite; opacity: .15; }
+.wave-2 { animation: drift 6s ease-in-out infinite reverse; opacity: .08; bottom: 10px; }
+
+@keyframes drift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-25%); }
+}
+
+/* floating particles */
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: var(--teal);
+  border-radius: 50%;
+  opacity: 0;
+  animation: float-up 6s ease-in-out infinite;
+}
+
+.particle:nth-child(1) { left: 15%; animation-delay: 0s; animation-duration: 7s; }
+.particle:nth-child(2) { left: 30%; animation-delay: 1.2s; animation-duration: 5.5s; }
+.particle:nth-child(3) { left: 50%; animation-delay: 2.5s; animation-duration: 8s; }
+.particle:nth-child(4) { left: 70%; animation-delay: .8s; animation-duration: 6s; }
+.particle:nth-child(5) { left: 85%; animation-delay: 3s; animation-duration: 7.5s; }
+.particle:nth-child(6) { left: 42%; animation-delay: 4s; animation-duration: 5s; }
+
+@keyframes float-up {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  20% { opacity: .6; }
+  80% { opacity: .3; }
+  100% { transform: translateY(-20vh) scale(1.5); opacity: 0; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  background: rgba(245, 158, 11, .12);
+  border: 1px solid rgba(245, 158, 11, .3);
+  color: var(--teal);
+  padding: .45rem 1.1rem;
+  border-radius: 100px;
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  animation: fadeInUp .8s ease both;
+}
+
+.hero-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--teal);
+  border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .5; transform: scale(1.5); }
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6.5vw, 5rem);
+  color: var(--white);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  animation: fadeInUp .8s ease .15s both;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--teal);
+}
+
+.hero-sub {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--slate);
+  line-height: 1.65;
+  max-width: 540px;
+  margin: 0 auto 2.5rem;
+  font-weight: 300;
+  animation: fadeInUp .8s ease .3s both;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeInUp .8s ease .45s both;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .9rem 2rem;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all .3s ease;
+}
+
+.btn-primary {
+  background: var(--teal);
+  color: var(--deep);
+  box-shadow: 0 4px 20px rgba(245, 158, 11, .35);
+}
+
+.btn-primary:hover {
+  background: var(--aqua);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(245, 158, 11, .4);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--white);
+  border: 1.5px solid rgba(255,255,255,.2);
+}
+
+.btn-ghost:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+  transform: translateY(-2px);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══ SPEED BANNER ═══ */
+.speed-banner {
+  background: var(--navy);
+  padding: 3rem 2rem;
+  overflow: hidden;
+}
+
+.speed-track {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.speed-stat {
+  text-align: center;
+}
+
+.speed-stat .number {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  color: var(--teal);
+  line-height: 1;
+}
+
+.speed-stat .label {
+  font-size: .8rem;
+  color: var(--slate);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-weight: 600;
+  margin-top: .35rem;
+}
+
+.speed-divider {
+  width: 1px;
+  height: 50px;
+  background: rgba(255,255,255,.1);
+}
+
+/* ═══ PLANS ═══ */
+.plans {
+  padding: 6rem 2rem;
+  background: var(--white);
+}
+
+.section-header {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto 4rem;
+}
+
+.section-label {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--ocean);
+  margin-bottom: .75rem;
+}
+
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--deep);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.section-header p {
+  color: var(--slate);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1050px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.plan-card {
+  background: var(--white);
+  border: 1.5px solid var(--mist);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  position: relative;
+  transition: transform .3s, box-shadow .3s, border-color .3s;
+}
+
+.plan-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(11, 29, 46, .1);
+}
+
+.plan-card.featured {
+  border-color: var(--teal);
+  background: linear-gradient(180deg, rgba(139,92,246,.04) 0%, var(--white) 100%);
+  box-shadow: 0 8px 32px rgba(139, 92, 246, .12);
+}
+
+.plan-card.featured:hover {
+  box-shadow: 0 16px 48px rgba(139, 92, 246, .18);
+}
+
+.plan-popular {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--teal);
+  color: var(--deep);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .35rem 1.1rem;
+  border-radius: 100px;
+}
+
+.plan-name {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--deep);
+  margin-bottom: .25rem;
+}
+
+.plan-speed {
+  font-size: .85rem;
+  color: var(--ocean);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.plan-price {
+  display: flex;
+  align-items: baseline;
+  gap: .15rem;
+  margin-bottom: .25rem;
+}
+
+.plan-price .currency {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--deep);
+  align-self: flex-start;
+  margin-top: .4rem;
+}
+
+.plan-price .amount {
+  font-family: var(--font-display);
+  font-size: 3.2rem;
+  color: var(--deep);
+  line-height: 1;
+}
+
+.plan-price .period {
+  color: var(--slate);
+  font-size: .9rem;
+}
+
+.plan-subtitle {
+  font-size: .8rem;
+  color: var(--slate);
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--mist);
+}
+
+.plan-features {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.plan-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: .6rem;
+  font-size: .9rem;
+  color: var(--deep);
+  padding: .4rem 0;
+}
+
+.plan-features li::before {
+  content: '✓';
+  color: var(--teal);
+  font-weight: 700;
+  font-size: .85rem;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.btn-plan {
+  width: 100%;
+  justify-content: center;
+  padding: .8rem 1.5rem;
+  border-radius: 10px;
+  font-size: .95rem;
+}
+
+.btn-plan-outline {
+  background: transparent;
+  color: var(--deep);
+  border: 1.5px solid var(--mist);
+}
+
+.btn-plan-outline:hover {
+  border-color: var(--teal);
+  color: var(--ocean);
+  background: rgba(139,92,246,.04);
+}
+
+.btn-plan-solid {
+  background: var(--teal);
+  color: var(--deep);
+}
+
+.btn-plan-solid:hover {
+  background: var(--aqua);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(245,158,11,.3);
+}
+
+/* ═══ FEATURES ═══ */
+.features {
+  padding: 6rem 2rem;
+  background: var(--sand);
+  position: relative;
+}
+
+.features::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--warm), transparent);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background: rgba(255,255,255,.7);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+  padding: 2rem 1.75rem;
+  border: 1px solid rgba(249,168,212,.3);
+  transition: transform .3s, box-shadow .3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(11,29,46,.06);
+}
+
+.feature-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 1.25rem;
+  background: linear-gradient(135deg, var(--ocean), var(--coral));
+  color: white;
+}
+
+.feature-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--deep);
+  margin-bottom: .5rem;
+}
+
+.feature-card p {
+  font-size: .9rem;
+  color: var(--slate);
+  line-height: 1.6;
+}
+
+/* ═══ CTA SECTION ═══ */
+.cta-section {
+  padding: 6rem 2rem;
+  background: var(--deep);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 80% at 30% 50%, rgba(139,92,246,.2) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 75% 60%, rgba(245,158,11,.12) 0%, transparent 50%);
+}
+
+.cta-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cta-content h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.cta-content p {
+  color: var(--slate);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* ═══ FOOTER ═══ */
+footer {
+  background: #110A1F;
+  padding: 3rem 2rem 2rem;
+  border-top: 1px solid rgba(255,255,255,.05);
+}
+
+.footer-inner {
+  max-width: 1050px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-brand {
+  max-width: 280px;
+}
+
+.footer-brand .nav-logo {
+  display: inline-block;
+  margin-bottom: .75rem;
+  font-size: 1.2rem;
+}
+
+.footer-brand p {
+  font-size: .85rem;
+  color: var(--slate);
+  line-height: 1.6;
+}
+
+.footer-col h4 {
+  font-family: var(--font-display);
+  color: var(--white);
+  font-size: 1rem;
+  margin-bottom: .75rem;
+}
+
+.footer-col a {
+  display: block;
+  color: var(--slate);
+  text-decoration: none;
+  font-size: .85rem;
+  padding: .2rem 0;
+  transition: color .2s;
+}
+
+.footer-col a:hover { color: var(--teal); }
+
+.footer-bottom {
+  max-width: 1050px;
+  margin: 2rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-bottom p {
+  font-size: .78rem;
+  color: rgba(107,130,153,.6);
+}
+
+.footer-bottom a {
+  color: #A78BFA;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.footer-bottom a:hover { text-decoration: underline; }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 860px) {
+  .plans-grid,
+  .features-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .speed-track { gap: 2rem; }
+  .speed-divider { display: none; }
+}
+
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .mobile-toggle { display: block; }
+
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(26,14,46,.97);
+    backdrop-filter: blur(16px);
+    padding: 1.5rem 2rem;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+
+  .plans-grid,
+  .features-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .speed-track { flex-direction: column; gap: 1.5rem; }
+
+  .footer-inner { flex-direction: column; }
+
+  .hero { padding: 7rem 1.5rem 4rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Little Island <span>Internet</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#plans">Plans</a></li>
+    <li><a href="#features">Why Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#plans" class="nav-cta">Get Connected</a></li>
+  </ul>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">Now Serving the Island</div>
+    <h1>Island Life, <em>Connected.</em></h1>
+    <p class="hero-sub">Fast, reliable internet built for our community. No contracts, no hidden fees — just honest connectivity from your neighbors.</p>
+    <div class="hero-actions">
+      <a href="#plans" class="btn btn-primary">View Plans &amp; Pricing</a>
+      <a href="#features" class="btn btn-ghost">Learn More</a>
+    </div>
+  </div>
+  <div class="hero-waves">
+    <svg class="wave-1" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0 60C240 100 480 20 720 60C960 100 1200 20 1440 60V120H0Z" fill="var(--teal)"/>
+    </svg>
+    <svg class="wave-2" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0 80C240 40 480 100 720 80C960 60 1200 100 1440 80V120H0Z" fill="var(--teal)"/>
+    </svg>
+  </div>
+</section>
+
+<!-- SPEED BANNER -->
+<div class="speed-banner">
+  <div class="speed-track">
+    <div class="speed-stat">
+      <div class="number">99.8%</div>
+      <div class="label">Uptime</div>
+    </div>
+    <div class="speed-divider"></div>
+    <div class="speed-stat">
+      <div class="number">24/7</div>
+      <div class="label">Local Support</div>
+    </div>
+    <div class="speed-divider"></div>
+    <div class="speed-stat">
+      <div class="number">0</div>
+      <div class="label">Contracts</div>
+    </div>
+    <div class="speed-divider"></div>
+    <div class="speed-stat">
+      <div class="number">1 Gbps</div>
+      <div class="label">Max Speed</div>
+    </div>
+  </div>
+</div>
+
+<!-- PLANS -->
+<section class="plans" id="plans">
+  <div class="section-header">
+    <div class="section-label">Plans &amp; Pricing</div>
+    <h2>Simple Plans, Honest Prices</h2>
+    <p>Every plan includes unlimited data, free installation, and our local support guarantee. No contracts ever.</p>
+  </div>
+
+  <div class="plans-grid">
+    <!-- Basic -->
+    <div class="plan-card">
+      <div class="plan-name">Basic</div>
+      <div class="plan-speed">50 Mbps Download</div>
+      <div class="plan-price">
+        <span class="currency">$</span>
+        <span class="amount">49</span>
+        <span class="period">/mo</span>
+      </div>
+      <div class="plan-subtitle">Perfect for everyday browsing</div>
+      <ul class="plan-features">
+        <li>50 Mbps download / 10 Mbps upload</li>
+        <li>Unlimited data — no caps</li>
+        <li>Free standard installation</li>
+        <li>Email &amp; phone support</li>
+        <li>Free modem rental</li>
+      </ul>
+      <a href="#contact" class="btn btn-plan btn-plan-outline">Get Started</a>
+    </div>
+
+    <!-- Plus -->
+    <div class="plan-card featured">
+      <div class="plan-popular">Most Popular</div>
+      <div class="plan-name">Plus</div>
+      <div class="plan-speed">200 Mbps Download</div>
+      <div class="plan-price">
+        <span class="currency">$</span>
+        <span class="amount">79</span>
+        <span class="period">/mo</span>
+      </div>
+      <div class="plan-subtitle">Great for families &amp; remote work</div>
+      <ul class="plan-features">
+        <li>200 Mbps download / 50 Mbps upload</li>
+        <li>Unlimited data — no caps</li>
+        <li>Free priority installation</li>
+        <li>Priority phone &amp; chat support</li>
+        <li>Free Wi-Fi 6 router included</li>
+        <li>Whole-home mesh add-on available</li>
+      </ul>
+      <a href="#contact" class="btn btn-plan btn-plan-solid">Get Started</a>
+    </div>
+
+    <!-- Pro -->
+    <div class="plan-card">
+      <div class="plan-name">Pro</div>
+      <div class="plan-speed">1 Gbps Download</div>
+      <div class="plan-price">
+        <span class="currency">$</span>
+        <span class="amount">119</span>
+        <span class="period">/mo</span>
+      </div>
+      <div class="plan-subtitle">For power users &amp; home offices</div>
+      <ul class="plan-features">
+        <li>1 Gbps download / 200 Mbps upload</li>
+        <li>Unlimited data — no caps</li>
+        <li>Same-day installation available</li>
+        <li>Dedicated support line</li>
+        <li>Free Wi-Fi 6E mesh system</li>
+        <li>Static IP available on request</li>
+      </ul>
+      <a href="#contact" class="btn btn-plan btn-plan-outline">Get Started</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-header">
+    <div class="section-label">Why Little Island</div>
+    <h2>Built for Island Living</h2>
+    <p>We're not a faceless corporation — we're your neighbors, committed to keeping our community connected.</p>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>Reliable Service</h3>
+      <p>Our network is engineered for island conditions with redundant connections and 99.8% uptime.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🤝</div>
+      <h3>Local Support</h3>
+      <p>Talk to real people who live here. Our support team knows your name, not just your ticket number.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📋</div>
+      <h3>No Contracts</h3>
+      <p>Month-to-month service, always. We earn your business every day — no fine print, no cancellation fees.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🛡️</div>
+      <h3>No Hidden Fees</h3>
+      <p>The price you see is the price you pay. No equipment fees, no data caps, no surprise charges.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏠</div>
+      <h3>Free Installation</h3>
+      <p>Professional setup at no cost. Our local technicians handle everything so you're online fast.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌊</div>
+      <h3>Community First</h3>
+      <p>A portion of every subscription supports island infrastructure and local community programs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-content">
+    <h2>Ready to Get Connected?</h2>
+    <p>Join your neighbors on the island's fastest, most reliable network. Call us or stop by — we'd love to chat.</p>
+    <a href="tel:+1-555-0123" class="btn btn-primary">Call (555) 012-3456</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">Little Island <span>Internet</span></a>
+      <p>Your local internet service provider. Fast, reliable, community-driven connectivity.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#plans">Residential Plans</a>
+      <a href="#plans">Business Solutions</a>
+      <a href="#features">Why Choose Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#contact">Contact Us</a>
+      <a href="#">Service Status</a>
+      <a href="#">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="#">info@littleislandinternet.com</a>
+      <a href="tel:+15550123">(555) 012-3456</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Little Island Internet. All rights reserved.</p>
+    <p>Powered by <a href="https://freewave.dev">Freewave.dev</a></p>
+  </div>
+</footer>
+
+<script>
+// Navbar scroll effect
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+// Mobile menu
+const toggle = document.getElementById('mobileToggle');
+const links = document.getElementById('navLinks');
+toggle.addEventListener('click', () => {
+  links.classList.toggle('open');
+});
+
+// Close mobile menu on link click
+links.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => links.classList.remove('open'));
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
